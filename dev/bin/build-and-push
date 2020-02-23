@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+readonly BASE_DIR=$(cd "$(dirname "$0")"; pwd)
+
+readonly SUPORTED_PHP_VERSIONS=('7.2' '7.3' '7.4')
+
+for version in "${SUPORTED_PHP_VERSIONS[@]}"; do
+    PHP_VERSION="$version" "${BASE_DIR}"/docker-compose build --build-arg PHP_VERSION="$version"
+    PHP_VERSION="$version" "${BASE_DIR}"/docker-compose push
+done

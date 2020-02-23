@@ -1,12 +1,12 @@
 version: '3'
 services:
     php:
+        image: docker.pkg.github.com/trikoder/oauth2-bundle/php:${PHP_VERSION:-7.4}
         build: ./dev/docker
         environment:
             HOST_USER_ID: ${HOST_USER_ID}
             HOST_GROUP_ID: ${HOST_GROUP_ID}
             PSR_HTTP_PROVIDER: ${PSR_HTTP_PROVIDER:-nyholm}
             SYMFONY_REQUIRE: ${SYMFONY_REQUIRE:-4.4.*}
-        image: trikoder/oauth2-bundle
         volumes:
             - .:/app/src

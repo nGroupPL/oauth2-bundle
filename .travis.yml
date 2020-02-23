@@ -39,9 +39,11 @@ env:
     - PHP_VERSION=7.4 PSR_HTTP_PROVIDER=zendframework SYMFONY_REQUIRE=4.4.*
 
 install:
-    - dev/bin/docker-compose build --build-arg PHP_VERSION=${PHP_VERSION} php
+    #- dev/bin/docker-compose pull php
+    - docker pull docker.pkg.github.com/trikoder/oauth2-bundle/php:${PHP_VERSION}
 
 before_script:
+    - dev/bin/php -v
     # Our docker image has symfony/flex installed to make sure SYMFONY_REQUIRE is working
     - dev/bin/php composer update --ansi --prefer-dist
 
